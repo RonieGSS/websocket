@@ -1,14 +1,13 @@
-
 const websocketEndpoint  = "wss://stream.binance.com:9443/ws"
 let websocketSymbolDepth = "btcusdt@depth"
 let websocketFrequency   = "@100ms"
 let quantity             = 3
 
 /**
-* Local Order Book
-*
-* Manages websocket streams for local order book
-*/
+ * Local Order Book
+ *
+ * Manages websocket streams for local order book
+ */
 class LocalOrderBook
 {
   /**
@@ -96,6 +95,14 @@ class LocalOrderBook
   }
 
   /**
+   * Logs the current date and time
+   */
+  logCurrentDate() {
+    let date = new Date();
+    console.log(date.toString());
+  }
+
+  /**
    * Starts the websocket streaming which will display
    * both average buy and sell prices on the console 
    */
@@ -103,6 +110,7 @@ class LocalOrderBook
     this.socket.onmessage = (message) => {
         this.buyPrice = this.setBuyPrice(message.data);
         this.sellPrice = this.setSellPrice(message.data);
+        this.logCurrentDate();
         this.getPrice('buy', this.quantity);
         this.getPrice('sell', this.quantity);
     }
