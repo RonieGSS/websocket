@@ -49,7 +49,7 @@ class LocalOrderBook
    * @return array buyPriceSortedArray sorted buy price array -> descending order
    */
   setBuyPrice(data) {
-    let buyPriceArray = JSON.parse(data)['a'];
+    let buyPriceArray = JSON.parse(data)['b'];
     buyPriceArray = buyPriceArray.filter(function(item) {
         return Math.ceil(parseFloat(item[1]));
     });
